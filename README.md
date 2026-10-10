@@ -13,10 +13,10 @@ A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that writes a timestamped
 ## Install
 
 1. Install BepInEx into your game folder: https://github.com/BepInEx/BepInEx/releases
-   Use the build that matches your game (Mono or IL2CPP), then run the game once so BepInEx generates its folders.
+   Use the build that matches your game (Mono), then run the game once so BepInEx generates its folders.
 2. Download CombatLogger.dll from the [Releases](../../releases) page.
 3. Put it in `OrbusVR-Classic-Community-PC/BepInEx/plugins/`.
-4. Launch the game. The log is written to `[log file location]`.
+4. Launch the game. The log is written to The default OrbusVR:Reborn `/LocalLow/Orbus Online, LLC/OrbusVR/combat.log`.
 
 ## Build from scratch
 
