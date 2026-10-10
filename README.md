@@ -18,6 +18,10 @@ A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that writes a timestamped
 3. Put it in `OrbusVR-Classic-Community-PC/BepInEx/plugins/`.
 4. Launch the game. The log is written to The default OrbusVR:Reborn `/LocalLow/Orbus Online, LLC/OrbusVR/combat.log`.
 
+## Linux Install
+
+See the official Linux install guide [here](https://docs.bepinex.dev/articles/advanced/proton_wine.html)
+
 ## Build from scratch
 
 **Requirements:** Visual Studio 2022 (or the .NET SDK) with .NET Framework 4.x targeting, and BepInEx installed in your game folder.
