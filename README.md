@@ -9,6 +9,7 @@ A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that writes a timestamped
 ## About
 - This is a backport or OrbusVR:Reborn's combat log, it will write the log to the same location as OrbusVR:Reborn so you will not need any Cindy Configuration
 - you can download the Cindy Parser from [Scott's Github](https://github.com/NotNotNotScott/CindyDownload/blob/main/Cindy.7z)
+- Added Optional XP Gain logging, you can enable it by setting `ShowXp = true` in the config file Found in the `OrbusVR-Classic-Community-PC/BepInEx/config/` folder
 
 ## Install
 
@@ -16,7 +17,7 @@ A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that writes a timestamped
    Use the build that matches your game (Mono), then run the game once so BepInEx generates its folders.
 2. Download CombatLogger.dll from the [Releases](../../releases) page.
 3. Put it in `OrbusVR-Classic-Community-PC/BepInEx/plugins/`.
-4. Launch the game. The log is written to The default OrbusVR:Reborn `/LocalLow/Orbus Online, LLC/OrbusVR/combat.log`.
+4. Launch the game. The log is written to The default OrbusVR:Reborn log found at `/LocalLow/Orbus Online, LLC/OrbusVR/combat.log`.
 
 ## Linux Install
 
