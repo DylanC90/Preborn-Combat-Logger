@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -80,7 +81,7 @@ class ZoneChangePatch
 }
 
 
-// ---------- Damage component: Monster method ID 6 ----------
+// ---------- Damage component: Monster method ID 6 (and optional XP: method ID 7) ----------
 
 [HarmonyPatch]
 class ComponentListenerPatch
@@ -90,6 +91,7 @@ class ComponentListenerPatch
     static Func<object, List<string>> getTypes;
 
     static List<string> validatedTypes;
+    static List<string> validatedXpTypes;
 
     static bool Prepare()
     {
@@ -150,13 +152,40 @@ class ComponentListenerPatch
             && string.Equals(types[2], "bool");
     }
 
+    static void ReadXpPacket(object listener, BinaryReader reader)
+    {
+        //Validate the signature once per distinct list
+        var types = getTypes(listener);
+        if (!ReferenceEquals(types, validatedXpTypes))
+        {
+            if (types == null || types.Count != 2 || types[0] != "int" || types[1] != "ushort")
+                return;
+            validatedXpTypes = types;
+        }
+
+        //Peek at the payload without consuming it
+        Stream s = reader.BaseStream;
+        long position = s.Position;
+        int amount = reader.ReadInt32();
+        s.Position = position;
+
+        if (amount > 0)
+            CombatLog.LogLoot(amount);
+    }
+
     static void Prefix(object __instance, BinaryReader reader)
     {
         try
         {
+            byte id = getMethodId(__instance);
+
             //Nearly every doRead exits here after one compiled field read.
-            if (getMethodId(__instance) != 6)
+            if (id != 6)
+            {
+                if (id == 7 && CombatLogger.ShowXp)
+                    ReadXpPacket(__instance, reader);
                 return;
+            }
 
             //Validate the signature once per distinct list instead of every hit.
             var types = getTypes(__instance);

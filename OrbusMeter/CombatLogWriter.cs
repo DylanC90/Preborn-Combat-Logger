@@ -12,6 +12,7 @@ public static class CombatLogWriter
     const byte ENTRY_COMBAT = 0;
     const byte ENTRY_COMBAT_CRIT = 1;
     const byte ENTRY_TEXT = 2;
+    const byte ENTRY_LOOT = 3;
 
     struct LogEvent
     {
@@ -127,6 +128,25 @@ public static class CombatLogWriter
         }
     }
 
+    public static void EnqueueLoot(long ticks, int amount)
+    {
+        if (!running)
+            return;
+
+        lock (queueLock)
+        {
+            if (incomingEvents.Count >= MAX_PENDING)
+                return;
+
+            incomingEvents.Add(new LogEvent
+            {
+                TimestampTicks = ticks,
+                Damage = amount, // reusing Damage for the XP amount
+                EntryKind = ENTRY_LOOT
+            });
+        }
+    }
+
     static long utcOffsetTicks;
     static int lastOffsetRefreshTick;
 
@@ -229,6 +249,12 @@ public static class CombatLogWriter
         {
             AppendChar(' ');
             AppendString(logEvent.Text);
+        }
+        else if (logEvent.EntryKind == ENTRY_LOOT)
+        {
+            AppendString(" [Loot] Gained ");
+            AppendInt(logEvent.Damage);
+            AppendString(" XP");
         }
         else
         {

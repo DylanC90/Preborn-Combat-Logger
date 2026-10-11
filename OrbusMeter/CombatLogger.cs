@@ -9,9 +9,12 @@ using UnityEngine;
 public class CombatLogger : BaseUnityPlugin
 {
     public static string LogPath;
+    public static bool ShowXp;
 
     void Awake()
     {
+        ShowXp = Config.Bind("General", "ShowXp", false,
+            "Log XP gains to the combat log.").Value;
         LogPath = GetCombatLogPath();
 
         try
@@ -90,6 +93,12 @@ public static class CombatLog
             NameCache.Resolve(targetGuid, now), targetGuid,
             NameCache.Resolve(attackerGuid, now), attackerGuid,
             damage, crit);
+    }
+
+    //XP event from the XP listener. Source may be null if the monster
+    public static void LogLoot(int amount)
+    {
+        CombatLogWriter.EnqueueLoot(DateTime.UtcNow.Ticks, amount);
     }
 
     //Called from the UpdateHealthBar postfix, which fires very often so i use Caching to save resources.
