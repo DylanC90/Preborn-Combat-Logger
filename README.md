@@ -12,6 +12,7 @@ A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that writes a timestamped
 - Added Optional XP Gain logging, you can enable it by setting `ShowXp = true` in the config file Found in the `OrbusVR-Classic-Community-PC/BepInEx/config/` folder
 
 ## Install
+<img width="636" height="291" alt="image" src="https://github.com/user-attachments/assets/52c9f83c-8440-4954-bc9d-1d1eb7598adc" />
 
 1. Install BepInEx into your game folder: https://github.com/BepInEx/BepInEx/releases
    Use the build that matches your game (Mono), then run the game once so BepInEx generates its folders.
