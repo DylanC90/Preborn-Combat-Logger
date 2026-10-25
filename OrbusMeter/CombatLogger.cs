@@ -10,11 +10,16 @@ public class CombatLogger : BaseUnityPlugin
 {
     public static string LogPath;
     public static bool ShowXp;
+    public static bool ShowFishing;
 
     void Awake()
     {
         ShowXp = Config.Bind("General", "ShowXp", false,
             "Log XP gains to the combat log.").Value;
+
+        ShowFishing = Config.Bind("General", "ShowFishing", false,
+        "Log fishing catch rewards to the combat log and above the rod in game when fishing conditions change.").Value;
+
         LogPath = GetCombatLogPath();
 
         try
