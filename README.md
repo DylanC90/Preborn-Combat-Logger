@@ -9,7 +9,7 @@ A [BepInEx](https://github.com/BepInEx/BepInEx) plugin that writes a timestamped
 ## About
 - This is a backport or OrbusVR:Reborn's combat log, it will write the log to the same location as OrbusVR:Reborn so you will not need any Cindy Configuration
 - you can download the Cindy Parser from [Scott's Discord](https://discord.gg/DtyevveHat)
-- Added Optional XP Gain logging, you can enable it by setting `ShowXp = true` in the config file Found in the `OrbusVR-Classic-Community-PC/BepInEx/config/` folder
+- Added Optional XP Gain, and Fishing logging, you can enable it by setting `ShowXp = true` and `ShowFishing = true` in the config file Found in the `OrbusVR-Classic-Community-PC/BepInEx/config/` folder
 
 ## Install
 <img width="636" height="291" alt="image" src="https://github.com/user-attachments/assets/52c9f83c-8440-4954-bc9d-1d1eb7598adc" />
