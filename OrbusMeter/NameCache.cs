@@ -91,4 +91,11 @@ public static class NameCache
         {
         }
     }
+    //fixes name mixup due to never clearing.
+    public static void Clear()
+    {
+        Array.Clear(names, 0, names.Length);
+        Array.Clear(rawNames, 0, rawNames.Length);
+        Array.Clear(retryAt, 0, retryAt.Length);
+    }
 }

@@ -77,6 +77,9 @@ class ZoneChangePatch
                 ? message.Substring(zoneStart)
                 : message.Substring(zoneStart, zoneEnd - zoneStart);
 
+            //clear cache to have correct naming on monsters.
+            NameCache.Clear();
+
             CombatLog.Write("[System] Entered zone: " + zone);
         }
         catch
